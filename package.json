@@ -11,9 +11,9 @@
         "botwa",
         "z4phdev"
     ],
-    "homepage": "https://github.com/z4phdev/baileys",
+    "homepage": "https://github.com/fanzxnothuman/baileys",
     "repository": {
-        "url": "https://github.com/z4phdev/baileys"
+        "url": "https://github.com/fanzxnothuman/baileys"
     },
     "license": "MIT",
     "author": "Adhiraj Singh",
@@ -51,7 +51,7 @@
         "futoin-hkdf": "^1.5.1",
         "libphonenumber-js": "^1.10.20",
         "lodash": "^4.17.21",
-        "libsignal": "npm:@shennmine/libsignal-node@2.0.1",
+        "libsignal": "github:yemo-dev/libsignal-node",
         "music-metadata": "^7.12.3",
         "node-cache": "^5.1.2",
         "node-fetch": "^2.6.1",

@@ -104,22 +104,18 @@ await sock.sendMessage(jid, {
 Deliver multiple images as a single cohesive album.
 
 ```javascript
-await sock.sendMessage(
-  jid,
-  {
-    albumMessage: [
-      {
-        image: IMAGE,
-        caption: "First image caption",
-      },
-      {
-        image: { url: "YOUR_IMAGE_URL" },
-        caption: "Second image caption",
-      },
-    ],
-  },
-  { quoted: m },
-);
+await sock.sendMessage(jid, {
+  albumMessage: [
+    {
+      image: IMAGE,
+      caption: "First image caption",
+    },
+    {
+      image: { url: "YOUR_IMAGE_URL" },
+      caption: "Second image caption",
+    },
+  ],
+}, { quoted: m });
 ```
 
 ### Event Message
@@ -127,26 +123,22 @@ await sock.sendMessage(
 Compose and dispatch a WhatsApp event invitation.
 
 ```javascript
-await sock.sendMessage(
-  jid,
-  {
-    eventMessage: {
-      isCanceled: false,
-      name: "Your Event Name",
-      description: "A brief description of your event.",
-      location: {
-        degreesLatitude: 0,
-        degreesLongitude: 0,
-        name: "Event Location",
-      },
-      joinLink: "https://call.whatsapp.com/video/your-link",
-      startTime: "1763019000",
-      endTime: "1763026200",
-      extraGuestsAllowed: false,
+await sock.sendMessage(jid, {
+  eventMessage: {
+    isCanceled: false,
+    name: "Your Event Name",
+    description: "A brief description of your event.",
+    location: {
+      degreesLatitude: 0,
+      degreesLongitude: 0,
+      name: "Event Location",
     },
+    joinLink: "https://call.whatsapp.com/video/your-link",
+    startTime: "1763019000",
+    endTime: "1763026200",
+    extraGuestsAllowed: false,
   },
-  { quoted: m },
-);
+}, { quoted: m });
 ```
 
 ### Poll Result Message
@@ -154,25 +146,21 @@ await sock.sendMessage(
 Render poll results alongside their respective vote tallies.
 
 ```javascript
-await sock.sendMessage(
-  jid,
-  {
-    pollResultMessage: {
-      name: "Your Poll Title",
-      pollVotes: [
-        {
-          optionName: "Option A",
-          optionVoteCount: "2",
-        },
-        {
-          optionName: "Option B",
-          optionVoteCount: "1",
-        },
-      ],
-    },
-  },
-  { quoted: m },
-);
+await sock.sendMessage(jid, {
+  pollResultMessage: {
+    name: "Your Poll Title",
+    pollVotes: [
+      {
+        optionName: "Option A",
+        optionVoteCount: "2"
+      },
+      {
+        optionName: "Option B",
+        optionVoteCount: "1"
+      }
+    ]
+  }
+}, { quoted: m });
 ```
 
 ### Simple Interactive Message
@@ -180,27 +168,23 @@ await sock.sendMessage(
 Send a straightforward interactive message featuring a copy-to-clipboard button.
 
 ```javascript
-await sock.sendMessage(
-  jid,
-  {
-    interactiveMessage: {
-      header: "Message Header",
-      title: "Message Title",
-      footer: "telegram: @fanzxnothuman",
-      buttons: [
-        {
-          name: "cta_copy",
-          buttonParamsJson: JSON.stringify({
-            display_text: "Copy Code",
-            id: "123456789",
-            copy_code: "YOUR_CODE_HERE",
-          }),
-        },
-      ],
-    },
-  },
-  { quoted: m },
-);
+await sock.sendMessage(jid, {
+  interactiveMessage: {
+    header: "Message Header",
+    title: "Message Title",
+    footer: "telegram: @fanzxnothuman",
+    buttons: [
+      {
+        name: "cta_copy",
+        buttonParamsJson: JSON.stringify({
+          display_text: "Copy Code",
+          id: "123456789",
+          copy_code: "YOUR_CODE_HERE"
+        })
+      }
+    ]
+  }
+}, { quoted: m });
 ```
 
 ### Interactive Message with Native Flow
@@ -208,83 +192,79 @@ await sock.sendMessage(
 Send a feature-rich interactive message incorporating buttons, copy actions, and native flow elements.
 
 ```javascript
-await sock.sendMessage(
-  jid,
-  {
-    interactiveMessage: {
-      header: "Message Header",
-      title: "Message Title",
-      footer: "telegram: @fanzxnothuman",
-      image: { url: "https://example.com/image.jpg" },
-      nativeFlowMessage: {
-        messageParamsJson: JSON.stringify({
-          limited_time_offer: {
-            text: "Your promotional text here.",
-            url: "https://t.me/fanzxnothuman",
-            copy_code: "YOUR_CODE",
-            expiration_time: Date.now() * 999,
-          },
-          bottom_sheet: {
-            in_thread_buttons_limit: 2,
-            divider_indices: [1, 2, 3, 4, 5, 999],
-            list_title: "List Title",
-            button_title: "Button Label",
-          },
-          tap_target_configuration: {
-            title: "Target Title",
-            description: "Target description.",
-            canonical_url: "https://t.me/fanzxnothuman",
-            domain: "example.com",
-            button_index: 0,
-          },
-        }),
-        buttons: [
-          {
-            name: "single_select",
-            buttonParamsJson: JSON.stringify({
-              has_multiple_buttons: true,
-            }),
-          },
-          {
-            name: "call_permission_request",
-            buttonParamsJson: JSON.stringify({
-              has_multiple_buttons: true,
-            }),
-          },
-          {
-            name: "single_select",
-            buttonParamsJson: JSON.stringify({
-              title: "Select an Option",
-              sections: [
-                {
-                  title: "Category",
-                  highlight_label: "Label",
-                  rows: [
-                    {
-                      title: "First Option",
-                      description: "Option description.",
-                      id: "row_1",
-                    },
-                  ],
-                },
-              ],
-              has_multiple_buttons: true,
-            }),
-          },
-          {
-            name: "cta_copy",
-            buttonParamsJson: JSON.stringify({
-              display_text: "Copy Code",
-              id: "123456789",
-              copy_code: "YOUR_CODE",
-            }),
-          },
-        ],
-      },
-    },
-  },
-  { quoted: m },
-);
+await sock.sendMessage(jid, {
+  interactiveMessage: {
+    header: "Message Header",
+    title: "Message Title",
+    footer: "telegram: @fanzxnothuman",
+    image: { url: "https://example.com/image.jpg" },
+    nativeFlowMessage: {
+      messageParamsJson: JSON.stringify({
+        limited_time_offer: {
+          text: "Your promotional text here.",
+          url: "https://t.me/fanzxnothuman",
+          copy_code: "YOUR_CODE",
+          expiration_time: Date.now() * 999
+        },
+        bottom_sheet: {
+          in_thread_buttons_limit: 2,
+          divider_indices: [1, 2, 3, 4, 5, 999],
+          list_title: "List Title",
+          button_title: "Button Label"
+        },
+        tap_target_configuration: {
+          title: "Target Title",
+          description: "Target description.",
+          canonical_url: "https://t.me/fanzxnothuman",
+          domain: "example.com",
+          button_index: 0
+        }
+      }),
+      buttons: [
+        {
+          name: "single_select",
+          buttonParamsJson: JSON.stringify({
+            has_multiple_buttons: true
+          })
+        },
+        {
+          name: "call_permission_request",
+          buttonParamsJson: JSON.stringify({
+            has_multiple_buttons: true
+          })
+        },
+        {
+          name: "single_select",
+          buttonParamsJson: JSON.stringify({
+            title: "Select an Option",
+            sections: [
+              {
+                title: "Category",
+                highlight_label: "Label",
+                rows: [
+                  {
+                    title: "First Option",
+                    description: "Option description.",
+                    id: "row_1"
+                  }
+                ]
+              }
+            ],
+            has_multiple_buttons: true
+          })
+        },
+        {
+          name: "cta_copy",
+          buttonParamsJson: JSON.stringify({
+            display_text: "Copy Code",
+            id: "123456789",
+            copy_code: "YOUR_CODE"
+          })
+        }
+      ]
+    }
+  }
+}, { quoted: m });
 ```
 
 ### Interactive Message with Thumbnail
@@ -292,28 +272,24 @@ await sock.sendMessage(
 Send an interactive message accompanied by a thumbnail image and a copy button.
 
 ```javascript
-await sock.sendMessage(
-  jid,
-  {
-    interactiveMessage: {
-      header: "Message Header",
-      title: "Message Title",
-      footer: "telegram: @fanzxnothuman",
-      image: { url: "https://example.com/image.jpg" },
-      buttons: [
-        {
-          name: "cta_copy",
-          buttonParamsJson: JSON.stringify({
-            display_text: "Copy Code",
-            id: "123456789",
-            copy_code: "YOUR_CODE",
-          }),
-        },
-      ],
-    },
-  },
-  { quoted: m },
-);
+await sock.sendMessage(jid, {
+  interactiveMessage: {
+    header: "Message Header",
+    title: "Message Title",
+    footer: "telegram: @fanzxnothuman",
+    image: { url: "https://example.com/image.jpg" },
+    buttons: [
+      {
+        name: "cta_copy",
+        buttonParamsJson: JSON.stringify({
+          display_text: "Copy Code",
+          id: "123456789",
+          copy_code: "YOUR_CODE"
+        })
+      }
+    ]
+  }
+}, { quoted: m });
 ```
 
 ### Product Message
@@ -321,33 +297,29 @@ await sock.sendMessage(
 Dispatch a product catalog message complete with merchant details and action buttons.
 
 ```javascript
-await sock.sendMessage(
-  jid,
-  {
-    productMessage: {
-      title: "Product Name",
-      description: "A concise description of the product.",
-      thumbnail: { url: "https://example.com/image.jpg" },
-      productId: "PROD001",
-      retailerId: "RETAIL001",
-      url: "https://example.com/product",
-      body: "Full product details.",
-      footer: "Special pricing available.",
-      priceAmount1000: 50000,
-      currencyCode: "IDR",
-      buttons: [
-        {
-          name: "cta_url",
-          buttonParamsJson: JSON.stringify({
-            display_text: "Purchase Now",
-            url: "https://example.com/buy",
-          }),
-        },
-      ],
-    },
-  },
-  { quoted: m },
-);
+await sock.sendMessage(jid, {
+  productMessage: {
+    title: "Product Name",
+    description: "A concise description of the product.",
+    thumbnail: { url: "https://example.com/image.jpg" },
+    productId: "PROD001",
+    retailerId: "RETAIL001",
+    url: "https://example.com/product",
+    body: "Full product details.",
+    footer: "Special pricing available.",
+    priceAmount1000: 50000,
+    currencyCode: "IDR",
+    buttons: [
+      {
+        name: "cta_url",
+        buttonParamsJson: JSON.stringify({
+          display_text: "Purchase Now",
+          url: "https://example.com/buy"
+        })
+      }
+    ]
+  }
+}, { quoted: m });
 ```
 
 ### Interactive Message with Document Buffer
@@ -355,46 +327,42 @@ await sock.sendMessage(
 Send an interactive message with a document loaded from the file system. **Note: Document attachments exclusively support buffer input.**
 
 ```javascript
-await sock.sendMessage(
-  jid,
-  {
-    interactiveMessage: {
-      header: "Message Header",
-      title: "Message Title",
-      footer: "telegram: @fanzxnothuman",
-      document: fs.readFileSync("./package.json"),
-      mimetype: "application/pdf",
-      fileName: "document.pdf",
-      jpegThumbnail: fs.readFileSync("./thumbnail.jpeg"),
-      contextInfo: {
-        mentionedJid: [jid],
-        forwardingScore: 777,
-        isForwarded: false,
-      },
-      externalAdReply: {
-        title: "Your Bot Name",
-        body: "Your bot description.",
-        mediaType: 3,
-        thumbnailUrl: "https://example.com/image.jpg",
-        mediaUrl: "https://example.com",
-        sourceUrl: "https://t.me/fanzxnothuman",
-        showAdAttribution: true,
-        renderLargerThumbnail: false,
-      },
-      buttons: [
-        {
-          name: "cta_url",
-          buttonParamsJson: JSON.stringify({
-            display_text: "Telegram",
-            url: "https://t.me/fanzxnothuman",
-            merchant_url: "https://t.me/fanzxnothuman",
-          }),
-        },
-      ],
+await sock.sendMessage(jid, {
+  interactiveMessage: {
+    header: "Message Header",
+    title: "Message Title",
+    footer: "telegram: @fanzxnothuman",
+    document: fs.readFileSync("./package.json"),
+    mimetype: "application/pdf",
+    fileName: "document.pdf",
+    jpegThumbnail: fs.readFileSync("./thumbnail.jpeg"),
+    contextInfo: {
+      mentionedJid: [jid],
+      forwardingScore: 777,
+      isForwarded: false
     },
-  },
-  { quoted: m },
-);
+    externalAdReply: {
+      title: "Your Bot Name",
+      body: "Your bot description.",
+      mediaType: 3,
+      thumbnailUrl: "https://example.com/image.jpg",
+      mediaUrl: "https://example.com",
+      sourceUrl: "https://t.me/fanzxnothuman",
+      showAdAttribution: true,
+      renderLargerThumbnail: false
+    },
+    buttons: [
+      {
+        name: "cta_url",
+        buttonParamsJson: JSON.stringify({
+          display_text: "Telegram",
+          url: "https://t.me/fanzxnothuman",
+          merchant_url: "https://t.me/fanzxnothuman"
+        })
+      }
+    ]
+  }
+}, { quoted: m });
 ```
 
 ### Interactive Message with Document Buffer (Minimal)
@@ -402,31 +370,27 @@ await sock.sendMessage(
 A streamlined variant without `contextInfo` or `externalAdReply`. **Note: Document attachments exclusively support buffer input.**
 
 ```javascript
-await sock.sendMessage(
-  jid,
-  {
-    interactiveMessage: {
-      header: "Message Header",
-      title: "Message Title",
-      footer: "telegram: @fanzxnothuman",
-      document: fs.readFileSync("./package.json"),
-      mimetype: "application/pdf",
-      fileName: "document.pdf",
-      jpegThumbnail: fs.readFileSync("./thumbnail.jpeg"),
-      buttons: [
-        {
-          name: "cta_url",
-          buttonParamsJson: JSON.stringify({
-            display_text: "Telegram",
-            url: "https://t.me/fanzxnothuman",
-            merchant_url: "https://t.me/fanzxnothuman",
-          }),
-        },
-      ],
-    },
-  },
-  { quoted: m },
-);
+await sock.sendMessage(jid, {
+  interactiveMessage: {
+    header: "Message Header",
+    title: "Message Title",
+    footer: "telegram: @fanzxnothuman",
+    document: fs.readFileSync("./package.json"),
+    mimetype: "application/pdf",
+    fileName: "document.pdf",
+    jpegThumbnail: fs.readFileSync("./thumbnail.jpeg"),
+    buttons: [
+      {
+        name: "cta_url",
+        buttonParamsJson: JSON.stringify({
+          display_text: "Telegram",
+          url: "https://t.me/fanzxnothuman",
+          merchant_url: "https://t.me/fanzxnothuman"
+        })
+      }
+    ]
+  }
+}, { quoted: m });
 ```
 
 ### Request Payment Message
@@ -434,31 +398,27 @@ await sock.sendMessage(
 Initiate a payment request with a custom background configuration and sticker attachment.
 
 ```javascript
-let quotedType = m.quoted?.mtype || "";
+let quotedType = m.quoted?.mtype || '';
 let quotedContent = JSON.stringify({ [quotedType]: m.quoted }, null, 2);
 
-await sock.sendMessage(
-  jid,
-  {
-    requestPaymentMessage: {
-      currency: "IDR",
-      amount: 10000000,
-      from: m.sender,
-      sticker: JSON.parse(quotedContent),
-      background: {
-        id: "100",
-        fileLength: "0",
-        width: 1000,
-        height: 1000,
-        mimetype: "image/webp",
-        placeholderArgb: 0xff00ffff,
-        textArgb: 0xffffffff,
-        subtextArgb: 0xffaa00ff,
-      },
-    },
-  },
-  { quoted: m },
-);
+await sock.sendMessage(jid, {
+  requestPaymentMessage: {
+    currency: 'IDR',
+    amount: 10000000,
+    from: m.sender,
+    sticker: JSON.parse(quotedContent),
+    background: {
+      id: '100',
+      fileLength: '0',
+      width: 1000,
+      height: 1000,
+      mimetype: 'image/webp',
+      placeholderArgb: 0xff00ffff,
+      textArgb: 0xffffffff,
+      subtextArgb: 0xffaa00ff
+    }
+  }
+}, { quoted: m });
 ```
 
 ---
